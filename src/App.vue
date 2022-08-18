@@ -1,7 +1,9 @@
 <template>
   <section>
     <router-view class="app-main" />
+    <Navbar />
   </section>
+   
 </template>
 
 <script setup>
@@ -9,6 +11,7 @@ import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { useUserStore } from "./store/user.js";
+import Navbar from "./assets/components/Navbar.vue";
 
 const router = useRouter();
 const userStore = useUserStore();
@@ -28,4 +31,5 @@ onMounted(async () => {
     console.log(e);
   }
 });
+
 </script>
