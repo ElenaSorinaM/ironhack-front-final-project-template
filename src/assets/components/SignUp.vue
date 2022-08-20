@@ -16,7 +16,7 @@
                 <h1 class=" text-gray-800 text-2xl font-medium">Crea tu cuenta y cuida tus plantas con nosotrxs</h1>
                 <h3 class="p-1 text-gray-700">Es gratuito! 😊</h3>
             </div>
-            <form action="#" class="p-0">
+            <form @submit="registerAccount" class="p-0">
                 <div class="mt-5">
                     <input 
                     v-model="email"
@@ -60,21 +60,65 @@
                 </div>
 
                 <div class="mt-10">
-                    <input type="submit" value="Regístrate con correo electronico" class="py-3 bg-emerald-500 text-white w-full rounded hover:bg-emerald-700">
+                    <input 
+                    type="submit" 
+                    value="Regístrate" 
+                    class="py-3 bg-emerald-500 text-white w-full rounded hover:bg-emerald-700">
                 </div>
             </form>
             <a class="" href="./SignIn.vue" data-test="Link"><span class="block  p-5 text-center text-gray-800  text-xs ">¿Ya tienes una cuenta?</span></a>
+            <div v-if="error"
+            class="border-red-600"
+            role="alert">
+            <span class="block">{{ this.errorMessage }}</span>
+            </div>
+            <div v-else>
+                <p>{{this.confirmationMessage}}</p>
+            </div>
+            </div>
+        
         </div>
-
-
-    </div>
+    
 </body>
 </template>
 
 <script>
-export default {
+import { useUserStore } from "../../store/user";
 
-}
+export default {
+    name: "SignUp",
+    setup(){
+        const user = useUserStore();
+        return { user };
+    },
+    data(){
+        return{
+            email: "",
+            confirmEmail: "",
+            password: "",
+            confirmPassword: "",
+            error: false,
+            errorMessage: "",
+            confirmation: false,
+            confirmationMessage: "",
+            };
+        },
+    methods : {
+        registerAccount() {
+            if (this.email !== this.confirmEmail){
+                this.error = true;
+                this.errorMessage = "Los correos no coinciden, revisalos"
+            } else if (this.password !== this.confirmPassword){
+                this.error = true;
+                this.errorMessage = "Las contraseñas no coinciden, revisalas"
+            } else {
+                this.user.signUp(this.email, this.password);
+                this.confirmation = true;
+                this.confirmationMessage = "Muy pronto te llegará un correo de confirmación! :)"
+            }
+            },
+        },
+    };
 </script>
 
 <style>
