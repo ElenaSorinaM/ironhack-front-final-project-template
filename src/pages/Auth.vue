@@ -2,16 +2,13 @@
   <div >
     <section v-if="accountOk">
     <SignIn />
-    <div>
-      <button @click="registerIntoTheAccount">
-      Accede a tu cuenta</button>
+    <div @click="registerIntoTheAccount">
     </div>
     </section>
     <section v-else>
       <SignUp />
-      <div>
-        <button @click="registerIntoTheAccountt">
-        No tengo una cuenta</button>
+      <div @click="registerIntoTheAccount">
+        
       </div>
     </section>
      
@@ -27,7 +24,7 @@ export default {
   name:"Auth",
   data(){
     return{
-      accountOk: true,
+      accountOk: false,
     };
   },
     components: { 

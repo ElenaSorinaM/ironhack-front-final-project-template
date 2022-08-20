@@ -16,21 +16,29 @@
             </div>
             <form action="#" class="p-0">
                 <div class="mt-5">
-
-                    
-                    <input type="text" class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent " placeholder="Email">
+                    <input 
+                    v-model="email"
+                    type="email"
+                    id="email"
+                    placeholder="Correo Electrónico"
+                    class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent ">
                 </div>
                 
                 <div class="mt-5">
-                    <input type="password" class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent  " placeholder="Contraseña">
+                    <input 
+                    v-model="password"
+                    type="password" 
+                    id="password"
+                    placeholder="Contraseña"
+                    class="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent  ">
                 </div>
 
 
                 <div class="mt-10">
-                    <input type="submit" value="Iniciar sesión" class="py-3 bg-green-500 text-white w-full rounded hover:bg-green-600">
+                    <input type="submit" value="Iniciar sesión" class="py-3 bg-emerald-500 text-white w-full rounded hover:bg-emerald-700">
                 </div>
             </form>
-            <a class="" href="/SignUp" data-test="Link"><span class="block  p-5 text-center text-gray-800  text-xs ">¿No tienes una cuenta?</span></a>
+            <a class="" href="./SignUp.vue" data-test="Link"><span class="block  p-5 text-center text-gray-800  text-xs ">¿No tienes una cuenta?</span></a>
         </div>
 
 
