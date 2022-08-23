@@ -16,7 +16,7 @@
                 <h1 class=" text-gray-800 text-2xl font-medium">Crea tu cuenta y cuida tus plantas con nosotrxs</h1>
                 <h3 class="p-1 text-gray-700">Es gratuito! 😊</h3>
             </div>
-            <form @submit="registerAccount" class="p-0">
+            <form @submit="registerAccount" @submit.prevent="registerOk" class="p-0">
                 <div class="mt-5">
                     <input 
                     v-model="email"
@@ -66,13 +66,15 @@
                     class="py-3 bg-emerald-500 text-white w-full rounded hover:bg-emerald-700">
                 </div>
             </form>
-            <a class="" href="./SignIn.vue" data-test="Link"><span class="block  p-5 text-center text-gray-800  text-xs ">¿Ya tienes una cuenta?</span></a>
+            <!--cambiar "Ya tienes una cuenta"-->
+            <!--<a class="" href="./SignIn.vue" data-test="Link"><span class="block  p-5 text-center text-gray-800  text-xs ">¿Ya tienes una cuenta?</span></a>-->
             <div v-if="error"
-            class="border-red-600"
+            class=" text-red-600"
             role="alert">
             <span class="block">{{ this.errorMessage }}</span>
             </div>
-            <div v-else>
+            <div v-else
+            class="text-green-600">
                 <p>{{this.confirmationMessage}}</p>
             </div>
             </div>
@@ -90,6 +92,7 @@ export default {
     setup(){
         const user = useUserStore();
         return { user };
+        
     },
     data(){
         return{
@@ -118,6 +121,26 @@ export default {
             }
             },
         },
+        async registerOk(){
+            try {
+                await this.user.signUp(this.email, this.password);
+                this.$router.push({path: '/'});
+            } catch (e) {
+                this.error = true;
+                this.errorMessage = 'para registrarte necesitas un correo y una contraseña válidos'
+            }
+        },
+        registerOk(email, confirmEmail) {
+            this.email = email;
+            this.confirmEmail = confirmEmail;
+            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email, confirmEmail)) {
+                     return true;
+                }
+                    else {
+                        this.error = true;
+                        this.errorMessage = "Por favor usa un correo válido!"
+                    }
+            },
     };
 </script>
 

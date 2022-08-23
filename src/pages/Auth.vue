@@ -24,7 +24,7 @@ export default {
   name:"Auth",
   data(){
     return{
-      accountOk: false,
+      accountOk: true,
     };
   },
     components: { 

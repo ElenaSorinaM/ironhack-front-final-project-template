@@ -14,7 +14,7 @@
                 <h1 class=" text-gray-800 text-2xl font-medium">Accede a tu cuenta y cuida tus plantas con nosotrxs</h1>
             
             </div>
-            <form action="#" class="p-0">
+            <form @submit.prevent="signInSuccess" class="p-0">
                 <div class="mt-5">
                     <input 
                     v-model="email"
@@ -38,17 +38,54 @@
                     <input type="submit" value="Iniciar sesión" class="py-3 bg-emerald-500 text-white w-full rounded hover:bg-emerald-700">
                 </div>
             </form>
-            <a class="" href="./SignUp.vue" data-test="Link"><span class="block  p-5 text-center text-gray-800  text-xs ">¿No tienes una cuenta?</span></a>
-        </div>
-
-
+            <!--cambiar ¿No tienes una cuenta? 
+            <a class="" href="./SignUp.vue" data-test="Link"><span class="block  p-5 text-center text-gray-800  text-xs ">¿No tienes una cuenta?</span></a>-->
+             <div v-if="error"
+            class=" text-red-600"
+            role="alert">
+            <span class="block">{{ this.errorMessage }}</span>
+            </div>
+        </div> 
     </div>
 </body>
 </template>
-<script>
-export default {
 
-}
+<script>
+import { useUserStore } from "../../store/user";
+
+export default {
+        name: "SignIn",
+        setup(){
+            const user = useUserStore();
+            return { user }
+        },
+
+        data() {
+            return {
+                email: "",
+                password: "",
+                error: false,
+                errorMessage: "",
+            }
+        },
+        
+        methods: {
+            async signInSuccess() {
+                try {
+                    await this.user.signIn(this.email, this.password);
+                    this.$router.push({path: '/'});
+                } catch (e) {
+                    this.error = true;
+                    this.errorMessage = "El correo o la contraseña es inválido"
+                }
+            },
+        },
+    };
+
+    
+
+
+
 </script>
 
 <style>
