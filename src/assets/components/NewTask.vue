@@ -2,9 +2,9 @@
     <div class="flex justify-center">
         <div class="mb-3 xl:w-96">
             <div class="relative flex flex-wrap items-stretch max-w-full mb-4">
-            <form class= "inline-flex" @submit.prevent="createNewTask">
+            <form class= "inline-flex" >
                 <input 
-                    v-model="newTitle" 
+                    v-model="newTask" 
                     id="new-task"
                     type="text" 
                     placeholder="Enter task" required 
@@ -17,7 +17,8 @@
                     class="btn inline-block px-6 py-2 border-2 
                     border-emerald-600 text-emerald-600 font-medium text-xs leading-tight uppercase rounded
                     hover:bg-black hover:bg-opacity-5 focus:outline-none 
-                    focus:ring-0 transition duration-150 ease-in-out">
+                    focus:ring-0 transition duration-150 ease-in-out"
+                    @submit.prevent="createNewTask">
                     Submit
                     </button>
             </form>
@@ -39,13 +40,19 @@ export default {
     },
     data() {
         return {
-            newTitle: "",
+            newTask: "",
+            is_complete: false,
         };
     },
     methods: {
-        createNewTask() {}
+       async createNewTask () {
+        
+        await this.tasks.addTasks(this.newTask, userId);
+        this.newTask = "";
+       }
     }
-}
+   
+};
 </script>
 
 <style>
