@@ -53,34 +53,35 @@
 <script>
 import { useUserStore } from "../../store/user";
 
-export default {
-        name: "SignIn",
-        setup(){
-            const user = useUserStore();
-            return { user }
-        },
 
-        data() {
-            return {
-                email: "",
-                password: "",
-                error: false,
-                errorMessage: "",
+export default {
+    name: "SignIn",
+    setup() {
+        const user = useUserStore();
+        return { user };
+    },
+    data() {
+        return {
+            email: "",
+            password: "",
+            error: false,
+            errorMessage: "",
+        };
+    },
+    methods: {
+        async signInSuccess() {
+            try {
+                await this.user.signIn(this.email, this.password);
+                this.$router.push({ path: "/" });
+            }
+            catch (e) {
+                this.error = true;
+                this.errorMessage = "El correo o la contraseña es inválido";
             }
         },
-        
-        methods: {
-            async signInSuccess() {
-                try {
-                    await this.user.signIn(this.email, this.password);
-                    this.$router.push({path: '/'});
-                } catch (e) {
-                    this.error = true;
-                    this.errorMessage = "El correo o la contraseña es inválido"
-                }
-            },
-        },
-    };
+    },
+    components: {  }
+};
 
     
 

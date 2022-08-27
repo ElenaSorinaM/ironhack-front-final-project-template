@@ -16,7 +16,7 @@
                 <h1 class=" text-gray-800 text-2xl font-medium">Crea tu cuenta y cuida tus plantas con nosotrxs</h1>
                 <h3 class="p-1 text-gray-700">Es gratuito! 😊</h3>
             </div>
-            <form @submit="registerAccount" @submit.prevent="registerOk" class="p-0">
+            <form @submit="registerAccount" class="p-0">
                 <div class="mt-5">
                     <input 
                     v-model="email"
@@ -121,26 +121,17 @@ export default {
             }
             },
         },
-        async registerOk(){
-            try {
-                await this.user.signUp(this.email, this.password);
-                this.$router.push({path: '/'});
-            } catch (e) {
-                this.error = true;
-                this.errorMessage = 'para registrarte necesitas un correo y una contraseña válidos'
-            }
-        },
-        registerOk(email, confirmEmail) {
-            this.email = email;
-            this.confirmEmail = confirmEmail;
-            if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email, confirmEmail)) {
-                     return true;
-                }
-                    else {
-                        this.error = true;
-                        this.errorMessage = "Por favor usa un correo válido!"
-                    }
-            },
+        // algo no funciona porque no va a home
+        // será porque tengo dos @submit?
+        //async registerOk(){
+        //    try {
+        //        await this.user.signUp(this.email, this.password);
+        //        this.$router.push({path: '/'});
+        //    } catch (e) {
+        //        this.error = true;
+        //        this.errorMessage = 'para registrarte necesitas un correo y una contraseña válidos'
+        //    }
+        //},
     };
 </script>
 

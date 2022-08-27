@@ -9,11 +9,14 @@ export const useTaskStore = defineStore("tasks", {
   }),
   actions: {
     async fetchTasks() {
-      const { data: tasks } = await supabase
+      const { data, error } = await supabase
         .from("tasks")
-        .select("*")
-        .order("id", { ascending: false });
-      this.tasks = tasks;
+        .select()
+      this.tasks = data;
+      if(error) console.log(error)
+      console.log(this.tasks)
+      console.log(data)
+      return this.tasks;
     },
     // Hacer POST
     // Hacer el PUT (edit)

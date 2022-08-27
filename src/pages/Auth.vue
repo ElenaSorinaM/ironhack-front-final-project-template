@@ -1,16 +1,12 @@
 <template>
   <div >
     <section v-if="accountOk">
-    <SignIn />
-    <div @click="registerIntoTheAccount">
-    </div>
+      <SignIn />
     </section>
     <section v-else>
       <SignUp />
-      <div @click="registerIntoTheAccount">
-        
-      </div>
     </section>
+    <button @click="registerIntoTheAccount">Cambio</button>
      
   </div>
   
