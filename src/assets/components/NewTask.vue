@@ -1,10 +1,10 @@
 <template>
     <div class="flex justify-center">
         <div class="mb-3 xl:w-96">
-            <div class="relative flex flex-wrap items-stretch w-full mb-4">
+            <div class="relative flex flex-wrap items-stretch max-w-full mb-4">
             <form class= "inline-flex" @submit.prevent="createNewTask">
                 <input 
-                    v-model="newTask" 
+                    v-model="newTitle" 
                     id="new-task"
                     type="text" 
                     placeholder="Enter task" required 
@@ -39,13 +39,11 @@ export default {
     },
     data() {
         return {
-            newTask: "",
+            newTitle: "",
         };
     },
     methods: {
-        createNewTask() {
-           this.newTask = !this.newTask
-        }
+        createNewTask() {}
     }
 }
 </script>
