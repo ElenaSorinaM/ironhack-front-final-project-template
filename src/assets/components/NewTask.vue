@@ -1,14 +1,27 @@
 <template>
-    <div class="flex-col bg-white">
-        <div>
-            <form @submit.prevent="createNewTask">
+    <div class="flex justify-center">
+        <div class="mb-3 xl:w-96">
+            <div class="relative flex flex-wrap items-stretch w-full mb-4">
+            <form class= "inline-flex" @submit.prevent="createNewTask">
                 <input 
                     v-model="newTask" 
                     id="new-task"
                     type="text" 
-                    placeholder="Enter task" required />
-                    <button type="submit" class="btnfocus:outline-none text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">Submit</button>
+                    placeholder="Enter task" required 
+                    class="relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal 
+                    text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 
+                    rounded transition ease-in-out m-0
+                    focus:text-gray-700 focus:bg-white focus:border-emerald-500 
+                    focus:outline-none"/>
+                    <button type="submit" 
+                    class="btn inline-block px-6 py-2 border-2 
+                    border-emerald-600 text-emerald-600 font-medium text-xs leading-tight uppercase rounded
+                    hover:bg-black hover:bg-opacity-5 focus:outline-none 
+                    focus:ring-0 transition duration-150 ease-in-out">
+                    Submit
+                    </button>
             </form>
+            </div>
         </div>
     </div>
 </template>

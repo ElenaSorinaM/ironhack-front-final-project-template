@@ -5,8 +5,6 @@
 
         <div class="w-1/2 bg-cover md:block hidden" style="background-image:  url(https://cdn.pixabay.com/photo/2017/03/31/15/34/cactus-2191647_960_720.jpg)"></div>
        
-
-
         <div class="md:w-1/2 max-w-lg mx-auto my-24 px-4 py-5 shadow-none">
 
             <div class="text-left p-0 font-sans">

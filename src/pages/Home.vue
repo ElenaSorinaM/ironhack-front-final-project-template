@@ -5,20 +5,26 @@
   </div>
   <section>
     <NewTask />
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-      <thead
-        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-      >
+    <div class="flex flex-col">
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="overflow-x-auto">
+            <table class="min-w-full">
+              <thead class="border-b">
         <tr>
-          <th class="border border-slate-600 ...">Tarea</th>
-          <th class="border border-slate-600 ...">Status</th>
-          <th class="border border-slate-600 ...">#</th>
-          <th class="border border-slate-600 ...">#</th>
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Tarea</th>
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Status</th>
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Modifica</th>
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Elimina</th>
         </tr>
         <Task v-for="task in tasks" :key="task.index" :task="task" />
       </thead>
       <tbody></tbody>
     </table>
+    </div>
+    </div>
+    </div>
+    </div>
   </section>
 </template>
 

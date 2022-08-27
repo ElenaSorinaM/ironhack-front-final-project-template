@@ -1,20 +1,16 @@
 <template>
-  <div>
-    <tr>
-      <td class="border border-slate-700">{{ task.title }}</td>
-      <td class="border border-slate-700">{{ task.isComplete }}</td>
-      <td>
-        <div class="text-center">
-          <span class="fa fa-pen"></span>
-        </div>
+  
+    <tr class="border-b">
+      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ task.title }}</td>
+      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ task.isComplete }}</td>
+      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+         <span class="fa fa-pen te"></span>
       </td>
-      <td>
-        <div class="text-center">
-          <span class="fa fa-trash"></span>
-        </div>
+      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+        <span class="fa fa-trash"></span>
       </td>
     </tr>
-  </div>
+  
 </template>
 
 <script>
