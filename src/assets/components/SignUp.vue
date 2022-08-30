@@ -121,17 +121,6 @@ export default {
             }
             },
         },
-        // algo no funciona porque no va a home
-        // será porque tengo dos @submit?
-        //async registerOk(){
-        //    try {
-        //        await this.user.signUp(this.email, this.password);
-        //        this.$router.push({path: '/'});
-        //    } catch (e) {
-        //        this.error = true;
-        //        this.errorMessage = 'para registrarte necesitas un correo y una contraseña válidos'
-        //    }
-        //},
     };
 </script>
 

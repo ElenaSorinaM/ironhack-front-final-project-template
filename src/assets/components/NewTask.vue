@@ -2,7 +2,7 @@
     <div class="flex justify-center">
         <div class="mb-3 xl:w-96">
             <div class="relative flex flex-wrap items-stretch max-w-full mb-4">
-            <form class= "inline-flex" >
+            <form class= "inline-flex" @submit.prevent="createNewTask" >
                 <input 
                     v-model="newTask" 
                     id="new-task"
@@ -18,7 +18,7 @@
                     border-emerald-600 text-emerald-600 font-medium text-xs leading-tight uppercase rounded
                     hover:bg-black hover:bg-opacity-5 focus:outline-none 
                     focus:ring-0 transition duration-150 ease-in-out"
-                    @submit.prevent="createNewTask">
+                    >
                     Submit
                     </button>
             </form>
@@ -41,13 +41,17 @@ export default {
     data() {
         return {
             newTask: "",
-            is_complete: false,
+            
         };
     },
     methods: {
        async createNewTask () {
+        const userId = this.user.user.id;
         
-        await this.tasks.addTasks(this.newTask, userId);
+        await this.task.addTasks(this.newTask, userId);
+
+        this.$emit('postTask');
+        
         this.newTask = "";
        }
     }

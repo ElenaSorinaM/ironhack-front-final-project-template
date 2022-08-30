@@ -4,7 +4,7 @@
     <h2 class="text-gray-800 text-5xl font-medium">Mi lista de tareas</h2>
   </div>
   <section>
-    <NewTask />
+    <NewTask @postTask="getTasks" />
     <div class="flex flex-col font-sans ">
       <div class="overflow-x-auto">
         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -13,8 +13,8 @@
               <thead class="border-b">
         <tr>
           <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Tarea</th>
-          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Status</th>
-          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Modifica</th>
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Editar</th>
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Estado</th>
           <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Elimina</th>
         </tr>
         <Task v-for="task in tasks" :key="task.index" :task="task" />
