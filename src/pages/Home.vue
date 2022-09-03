@@ -17,7 +17,7 @@
           <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Estado</th>
           <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Elimina</th>
         </tr>
-        <Task v-for="task in tasks" :key="task.index" :task="task" />
+        <Task v-for="task in task.tasks" :taskId="task.id" :key="task.index" :task="task" />
       </thead>
       <tbody></tbody>
     </table>

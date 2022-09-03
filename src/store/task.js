@@ -7,12 +7,15 @@ import { supabase } from "../supabase";
 export const useTaskStore = defineStore("tasks", {
   state: () => ({
     tasks: null,
+    
+
   }),
   actions: {
     async fetchTasks() {
       const { data, error } = await supabase
         .from("tasks")
-        .select()
+        .select("*")
+        .order("id", {ascending: false})
       this.tasks = data;
       if(error) console.log(error)
       console.log(this.tasks)
@@ -35,14 +38,51 @@ export const useTaskStore = defineStore("tasks", {
       console.log(error.message)
     }
   },
+  //no funciona
     // Hacer el PUT (edit)
-    
+    async editTask (taskTitle, taskId){
+      console.log('Édit task executed');
+      try {
+        const {data, error} = await supabase
+        .from("tasks")
+        .update( 
+          {title: taskTitle}
+          )
+        .match(
+          {
+            id: taskId
+          }
+        );
+        this.fetchTasks(); 
+        return data;
+      }
+      catch (error) {
+        console.log(error.message)
+      }
+    },
 
+    
     // Hacer el delete
+    //async deleteTask (taskId){
+    //  try {
+    //    const {data, error} = await supabase
+    //    .from("tasks")
+    //    .match(
+    //      {
+    //        id: taskId
+    //      }
+    //    );
+    //    this.fetchTasks(); 
+    //    return data;
+    //  } 
+    //  catch (error) {
+    //    console.log(error.message)
+    //  }
+    //},
+
+
     // Hacer el PUT (cambiar entre completada y pendiente)
 
-    
-    //no funciona
     //async editStatus (isCompleted, completed){
     //  try{
     //    const {data} = await supabase

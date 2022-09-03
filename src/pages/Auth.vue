@@ -4,10 +4,16 @@
       <SignIn />
     </section>
     <section v-else>
-      <SignUp />
+      <SignUp :signUpPage="signupPage"/>  
+      <!-- <SignUp :signUpPage="signupPage" />   -->
+      <!-- <button class="btn" :style="{backgroundColor:bgColor}">{{name}}</button> -->
     </section>
-    <button @click="registerIntoTheAccount">Cambio</button>
-     
+
+    
+    
+    <!-- no consigo moverlo de aquì -->
+     <!-- <button v-if="signUpPage = !signUpPage " @click="registerIntoTheAccount">¿Ya tienes una cuenta?</button>
+      <button v-else-if="signInPage = !signInPage" @click="signIntoTheAccount">¿Ya tienes una cuenta?</button> --> 
   </div>
   
 </template>
@@ -21,16 +27,25 @@ export default {
   data(){
     return{
       accountOk: false,
+      signUpPage: true,
+      signInPage: true,
     };
   },
+    //props: {
+    //    name: String,
+    //    bgColor: String
+    //},
     components: { 
       SignIn, 
-      SignUp 
+      SignUp,
       },
-      methods: {
-        registerIntoTheAccount() {
-          this.accountOk = !this.accountOk;
-        },
+    methods: {
+      registerIntoTheAccount() {
+        this.accountOk = !this.accountOk;
+      },
+      signIntoTheAccount() {
+        this.accountOk = !this.accountOk;
+        }
       },
 };
 </script>
