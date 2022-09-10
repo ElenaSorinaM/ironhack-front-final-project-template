@@ -4,16 +4,14 @@
       <SignIn />
     </section>
     <section v-else>
-      <SignUp :signUpPage="signupPage"/>  
+      <SignUp />  
       <!-- <SignUp :signUpPage="signupPage" />   -->
-      <!-- <button class="btn" :style="{backgroundColor:bgColor}">{{name}}</button> -->
+      
     </section>
 
-    
-    
     <!-- no consigo moverlo de aquì -->
-     <!-- <button v-if="signUpPage = !signUpPage " @click="registerIntoTheAccount">¿Ya tienes una cuenta?</button>
-      <button v-else-if="signInPage = !signInPage" @click="signIntoTheAccount">¿Ya tienes una cuenta?</button> --> 
+    <button v-if="signUpPage = !signUpPage " @click="registerIntoTheAccount">¿Ya tienes una cuenta?</button>
+    <button v-else-if="signInPage = !signInPage" @click="signIntoTheAccount">¿Ya tienes una cuenta?</button> 
   </div>
   
 </template>

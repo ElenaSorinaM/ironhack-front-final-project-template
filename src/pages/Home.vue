@@ -5,25 +5,51 @@
   </div>
   <section>
     <NewTask @postTask="getTasks" />
-    <div class="flex flex-col font-sans ">
+    <div class="flex flex-col font-sans">
       <div class="overflow-x-auto">
         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
           <div class="overflow-x-auto">
             <table class="min-w-full">
               <thead class="border-b">
-        <tr>
-          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Tarea</th>
-          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Editar</th>
-          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Estado</th>
-          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Elimina</th>
-        </tr>
-        <Task v-for="task in task.tasks" :taskId="task.id" :key="task.index" :task="task" />
-      </thead>
-      <tbody></tbody>
-    </table>
-    </div>
-    </div>
-    </div>
+                <tr>
+                  <th
+                    scope="col"
+                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                  >
+                    Tarea
+                  </th>
+                  <th
+                    scope="col"
+                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                  >
+                    Editar
+                  </th>
+                  <th
+                    scope="col"
+                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                  >
+                    Estado
+                  </th>
+                  <th
+                    scope="col"
+                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                  >
+                    Elimina
+                  </th>
+                </tr>
+                <Task
+                  v-for="task in task.tasks"
+                  :taskId="task.id"
+                  :key="task.index"
+                  :task="task"
+                  :isComplete="task.is_complete"
+                />
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -47,13 +73,13 @@ export default {
   },
   data() {
     return {
-      tasks: []
-    }
+      tasks: [],
+    };
   },
   methods: {
     async getTasks() {
       const tasks = await this.task.fetchTasks();
-      this.tasks = tasks
+      this.tasks = tasks;
     },
   },
   async mounted() {

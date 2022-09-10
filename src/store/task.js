@@ -38,7 +38,7 @@ export const useTaskStore = defineStore("tasks", {
       console.log(error.message)
     }
   },
-  //no funciona
+
     // Hacer el PUT (edit)
     async editTask (taskTitle, taskId){
       console.log('Édit task executed');
@@ -63,38 +63,43 @@ export const useTaskStore = defineStore("tasks", {
 
     
     // Hacer el delete
-    //async deleteTask (taskId){
-    //  try {
-    //    const {data, error} = await supabase
-    //    .from("tasks")
-    //    .match(
-    //      {
-    //        id: taskId
-    //      }
-    //    );
-    //    this.fetchTasks(); 
-    //    return data;
-    //  } 
-    //  catch (error) {
-    //    console.log(error.message)
-    //  }
-    //},
+     async deleteTask (taskId){
+      try {
+        const {data, error} = await supabase
+        .from("tasks")
+        .delete()
+        .match(
+          {
+            id: taskId
+          }
+        );
+        this.fetchTasks(); 
+        return data;
+      } 
+      catch (error) {
+        console.log(error.message)
+      }
+    },
 
 
     // Hacer el PUT (cambiar entre completada y pendiente)
 
-    //async editStatus (isCompleted, completed){
-    //  try{
-    //    const {data} = await supabase
-    //    .from("tasks")
-    //    .update ({is_complete: completed})
-    //    .match({id: isCompleted});
-    //    this.fetchTasks();
-    //  return data;
-    //} catch (error) {
-    //  console.log(error.message)
-    //}
+    async editStatus (taskId, isCompleted){
+      try{
+        const {data} = await supabase
+        .from("tasks")
+        .update (
+          {is_complete: isCompleted}
+          )
+        .match(
+          {id: taskId}
+          );
+        this.fetchTasks();
+      return data;
+    } catch (error) {
+      console.log(error.message)
+    }
     
-  //}
+  }
   },
 });
