@@ -1,7 +1,5 @@
 <template>
-  <section>
     <router-view class="app-main" />
-  </section>
    
 </template>
 
@@ -32,3 +30,9 @@ onMounted(async () => {
 });
 
 </script>
+
+<style>
+  #app {
+    height: 100vh;
+  }
+</style>

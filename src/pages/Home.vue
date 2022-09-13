@@ -1,9 +1,10 @@
 <template>
-  <Navbar />
+  <section class="h-100 flex flex-col justify-between">
+  <Navbar />  
   <div class="text-center py-10 font-sans">
     <h2 class="text-gray-800 text-5xl font-medium">Mi lista de tareas</h2>
   </div>
-  <section>
+  
     <NewTask @postTask="getTasks" />
     <div class="flex flex-col font-sans">
       <div class="overflow-x-auto">
@@ -14,13 +15,14 @@
                 <tr>
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left w-1/2"
                   >
-                    Tarea
+                    
                   </th>
+                  
                   <th
                     scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left w-1/5"
                   >
                     Editar
                   </th>
@@ -37,12 +39,26 @@
                     Elimina
                   </th>
                 </tr>
+                
+                <h2 class= "w-full text-left font-bold	">Pending</h2>
                 <Task
-                  v-for="task in task.tasks"
+                  v-for="task in pendingTasks"
                   :taskId="task.id"
                   :key="task.index"
                   :task="task"
                   :isComplete="task.is_complete"
+                  @somethingChanged="getTasks"
+
+                />
+                <br>
+                <h2 class= "w-full text-left font-bold	">Completed</h2>
+                <Task
+                  v-for="task in completedTasks"
+                  :taskId="task.id"
+                  :key="task.index"
+                  :task="task"
+                  :isComplete="task.is_complete"
+                  @somethingChanged="getTasks"
                 />
               </thead>
               <tbody></tbody>
@@ -51,6 +67,9 @@
         </div>
       </div>
     </div>
+  
+  
+  <Footer />
   </section>
 </template>
 
@@ -59,6 +78,7 @@ import Navbar from "../assets/components/Navbar.vue";
 import NewTask from "../assets/components/NewTask.vue";
 import Task from "../assets/components/Task.vue";
 import { useTaskStore } from "../store/task";
+import Footer from "../assets/components/Footer.vue";
 
 export default {
   setup() {
@@ -70,22 +90,41 @@ export default {
     Navbar,
     NewTask,
     Task,
-  },
+    Footer
+},
   data() {
     return {
       tasks: [],
+      completedTasks: [],
+      pendingTasks: []
     };
   },
   methods: {
     async getTasks() {
-      const tasks = await this.task.fetchTasks();
+      const tasks = await this.task.fetchTasks();      
       this.tasks = tasks;
+      this.completedTasks = tasks.filter(task => task.is_complete === true);
+      this.pendingTasks = tasks.filter(task => task.is_complete === false);
+      console.log(this.tasks);
+      
     },
   },
   async mounted() {
     await this.getTasks();
   },
+
 };
 </script>
 
-<style></style>
+<style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+</style>

@@ -4,27 +4,41 @@
       {{ task.title }}
     </td>
     <!--edit task-->
-    <td v-if="!wantToEdit" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-      <button @click.prevent="toggleWantToEdit" class="px-3"><span class="fa fa-pen"></span></button>
+
+    <td
+      v-if="!wantToEdit"
+      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+    >
+      <!--transition no me funciona-->
+      
+        <button @click.prevent="toggleWantToEdit" class="px-3">
+          <span class="fa fa-pen"></span></button>
     </td>
+
     <td v-else>
       <form v-on:submit.prevent="editTaskTitle">
-       
         <input
-          class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900" 
+          class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900"
           v-model="editT"
           id="edit-T"
           type="text"
           placeholder="escribe aquí para editar"
         />
+
         <button type="submit" class="px-2">
           <span class="fa fa-check"></span>
         </button>
       </form>
     </td>
+
     <!--task complete -->
     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-      <button v-if="isComplete" @click.prevent="toggleIsComplete" class="px-4">
+      <button
+        v-if="isComplete"
+        @click.prevent="toggleIsComplete"
+        id="isDone"
+        class="px-4"
+      >
         <span class="fa-regular fa-circle-check"></span>
       </button>
       <button v-else @click.prevent="toggleIsComplete" id="unDone" class="px-4">
@@ -72,25 +86,43 @@ export default {
     },
 
     cancelTask() {
-      console.log("cancelTask")
+      console.log("cancelTask");
       this.taskStore.deleteTask(this.taskId);
+      
     },
     toggleWantToEdit() {
-      this.wantToEdit = !this.wantToEdit
-      this.editT = this.task.title
+      this.wantToEdit = !this.wantToEdit;
+      //this.editT = this.task.title
     },
 
     toggleIsComplete() {
       try {
         console.log("Iscomplete method", !this.isComplete);
         this.taskStore.editStatus(this.taskId, !this.isComplete);
-        
       } catch (error) {
         console.log(error.message);
       }
+      this.$emit("somethingChanged");
+      
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+.fade-enter-active {
+  transition: all 2 ease;
+}
+.fade-leave-from {
+}
+.fade-leave-to {
+}
+.fade-leave-active {
+}
+</style>
