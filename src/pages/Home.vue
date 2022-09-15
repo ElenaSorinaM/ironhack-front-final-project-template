@@ -1,7 +1,8 @@
 <template>
   <section class="h-100 flex flex-col justify-between">
-  <Navbar />  
-  <div class="text-center py-10 font-sans">
+  <Navbar /> 
+  <div>
+    <div class="text-center py-10 font-sans">
     <h2 class="text-gray-800 text-5xl font-medium">Mi lista de tareas</h2>
   </div>
   
@@ -67,6 +68,8 @@
         </div>
       </div>
     </div>
+  </div> 
+  
   
   
   <Footer />
@@ -101,30 +104,20 @@ export default {
   },
   methods: {
     async getTasks() {
+      console.log('Something changed')
       const tasks = await this.task.fetchTasks();      
       this.tasks = tasks;
       this.completedTasks = tasks.filter(task => task.is_complete === true);
       this.pendingTasks = tasks.filter(task => task.is_complete === false);
       console.log(this.tasks);
-      
     },
   },
   async mounted() {
-    await this.getTasks();
+    await this.getTasks();    
   },
-
 };
 </script>
 
 <style>
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-}
 
 </style>

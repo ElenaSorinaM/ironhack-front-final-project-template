@@ -79,50 +79,39 @@ export default {
   },
 
   methods: {
-    editTaskTitle() {
-      this.taskStore.editTask(this.editT, this.taskId);
+    async editTaskTitle() {
+      await this.taskStore.editTask(this.editT, this.taskId);
       this.wantToEdit = false;
       this.editT = "";
+      this.$emit('somethingChanged')
+
     },
 
-    cancelTask() {
+    async cancelTask() {
       console.log("cancelTask");
-      this.taskStore.deleteTask(this.taskId);
-      
+      await this.taskStore.deleteTask(this.taskId);
+      this.$emit('somethingChanged')
     },
     toggleWantToEdit() {
       this.wantToEdit = !this.wantToEdit;
+      
       //this.editT = this.task.title
     },
 
-    toggleIsComplete() {
+    async toggleIsComplete() {
       try {
         console.log("Iscomplete method", !this.isComplete);
-        this.taskStore.editStatus(this.taskId, !this.isComplete);
+        await this.taskStore.editStatus(this.taskId, !this.isComplete);
       } catch (error) {
         console.log(error.message);
       }
       this.$emit("somethingChanged");
-      
     },
   },
 };
 </script>
 
 <style>
-.fade-enter-from {
-  opacity: 0;
-}
-.fade-enter-to {
-  opacity: 1;
-}
-.fade-enter-active {
-  transition: all 2 ease;
-}
-.fade-leave-from {
-}
-.fade-leave-to {
-}
-.fade-leave-active {
-}
+
+
 </style>
