@@ -41,7 +41,7 @@
                   </th>
                 </tr>
                 
-                <h2 class= "w-full text-left font-bold	">Pending</h2>
+                <h2 class= "w-full text-left font-bold	">Pendiente</h2>
                 <Task
                   v-for="task in pendingTasks"
                   :taskId="task.id"
@@ -52,7 +52,7 @@
 
                 />
                 <br>
-                <h2 class= "w-full text-left font-bold	">Completed</h2>
+                <h2 class= "w-full text-left font-bold	">Completado</h2>
                 <Task
                   v-for="task in completedTasks"
                   :taskId="task.id"
