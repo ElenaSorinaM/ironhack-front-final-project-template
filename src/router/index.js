@@ -13,6 +13,10 @@ const routes = [
     name: 'Auth',
     component: Auth,
   },
+  {
+  path: '/*',
+  component: 404
+  },
 ];
 
 const router = createRouter({
@@ -21,3 +25,4 @@ const router = createRouter({
 });
 
 export default router;
+
